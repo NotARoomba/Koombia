@@ -1,21 +1,10 @@
-//http://tts.cyzon.us/tts <- funny tts request thing;
-window.onload = function() {
-  const btn = document.getElementById("tts");
-  btn.addEventListener("click", async function() { await tts() })
-  async function tts() {
-    const requestOptions = {
-      method: "GET",
-      mode: "no-cors"
-    }
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const context = new AudioContext();
-    const buffer = await fetch('https://tts.cyzon.us/tts?text=' + encodeURI("aeoiu"), requestOptions)
-      .then(res => res.arrayBuffer())
-      .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer)).then(buffer => {
-        console.log(buffer)
-        const audio = new Audio(buffer)
-        audio.play()
-      });
-    return;
-  }
-}
+const requests = require('request');
+const { Readable } = require('stream');
+var Speech = require('speak-tts')
+const tone = require('tone')
+// global.window.request = requests
+// global.window.Readable = Readable
+window.ss = Speech
+window.tone = tone
+// global.window.say = say
+

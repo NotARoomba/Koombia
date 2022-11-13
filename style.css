@@ -1,4 +1,480 @@
+@import url("https://fonts.googleapis.com/css?family=Karla:500,700");
+html {
+  overflow-x: hidden;
+}
+
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: "Karla";
+}
+
+section{
+  position: relative;
+  width: 100%;
+  min-height: 25vh;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0E1E45;
+  
+}
+
+header{
+  position: absolute;
+  top: 0
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnsjuju{
+  justify-content: space-between;
+}
+
+header .logo{
+  position: relative;
+  max-width: 200px;
+}
+
+header ul{
+  position: relative;
+  display: flex;
+}
+
+header ul li{
+  list-style: none;
+}
+
+header ul li a{
+  display: inline-block;
+  margin-left: 40px;
+  text-decoration: none;
+}
+
+.content{
+  position: relative;
+  width: 53%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 100px;
+}
+
+.content .textBox{
+  position: left;
+  max-width: 1200px;
+  padding: 75px;
+}
+
+.content .textBox2{
+  position: right;
+  max-width: 2px;
+  padding: 0px;
+  justify-content:right;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+}
+
+div.textBox2{
+  padding:50px;
+}
+
+.content .textBox h2{
+  color: #F0E4FF;
+  font-size: 3em;
+  line-height: 1.4em;
+  font-weight: 500;
+}
+
+.content .textBox2 h2{
+  color: #F0E4FF;
+  font-size: 3em;
+  line-height: 1.4em;
+  font-weight: 500;
+}
+
+.gif{
+  width: 400px;
+}
+
+.content .textBox h2 span{
+  color: #4674F6;
+  font-size: 1.2em;
+  font-weight: 900;
+}
+
+.content .textBox2 h2 span{
+  color: #4674F6;
+  font-size: 1.2em;
+  font-weight: 900;
+}
+
+.content .textBox p{
+  color: #F0E4FF;
+}
+
+.content .textBox2 p{
+  color: #F0E4FF;
+}
+
+.content .textBox a{
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background: #0E1E45;
+  color: #E046B0;
+  border-radius: 40px;
+}
+
+.content .textBox2 a{
+  display: inline-block;
+  margin-top: 5px;
+  padding: 8px 5px;
+  background: #0E1E45;
+  color: #E046B0;
+  border-radius: 40px;
+}
+
+.content .imgBox{
+  width: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.musicmanimg{
+  width:600px;
+  align-content: left;
+  left: 100px;
+  justify-content: space-between;
+}
+
+.genresimg{
+  width:520px;
+  align-content: left;
+  right: 100px;
+  justify-content: space-between;
+  padding-left: 100px;
+}
+---
+
 html, body {
-  height: 100%;
+height: 100vh;
+}
+
+body {
+  color: #F0E4FF;
+  font-family: "Karla";
+  background: #0E1E45
+
+}
+
+nav{
+  padding: 10px;
+  background-color: #6400D4;
+  margin: 0;
+  border-radius: 20px;
+  letter-spacing: 3px;
+  font-family: "Karla";
+}
+
+h1 {
+  font-size: 70px;
+  font-weight: 1000;
+  font-family: 'Karla';
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: 'Karla';
+}
+
+
+li {
+  display: inline;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+}
+
+li a {
+  color: #E7D5FD;
+  font-family:"Karla";
+  text-align: center;
+  padding: 14px 30px;
+  text-decoration: none;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+li a:hover {
+  color: #E046B0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.generatebtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  margin: 5px;
+  font-family: "Karla";
+  color: #E7D5FD;
+  border: none;
+  background-color: #4674F6;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 20px;
+
+}
+
+.generatebtn:hover{
+  background-color: #E7D5FD;
+  border-color:#4674F6;
+  color: #0E1E45;
+  border:solid;
+  transition:0.3s;
+}
+
+#section1 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.btn2{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  font-family: "Karla";
+  color: #E7D5FD;
+  border: none;
+  background-color: #4674F6;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 20px;
+
+}
+
+.btn2:hover{
+  background-color: #E7D5FD;
+  border-color:#4674F6;
+  color: #0E1E45;
+  border:solid;
+  transition:0.3s;
+}
+
+.wrapp{
+  display: flex;
+  justify-content: left;
+  margin: 30px;
+}
+
+.logo{
+
+}
+
+#section2{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#section2 h2{
+  font-size: 40px;
+  color: #4674F6;
+  margin: 3px;
+}
+
+#section p{
+  margin: 2px;
+  padding: 3px;
+  font-size: 15px;
+}
+
+.steps-table{
+  display: flex;
+  justify-content: center;
+  flex: row;
+  margin: 20px;
+  padding: 10px;
+}
+
+.step{
+  border: none;
+  border-color: white;
+  margin: 10px;
+  padding: 5px;
+  width: 20%;
+}
+
+.underline{
+  text-decoration: underline;
+  text-decoration-color: #E046B0;
+  text-decoration-thickness: 2px;
+}
+
+.feet{
+  font-size:20px;
+  justify-content: center;
+  display: flex;
+  padding: 10px;
+}
+
+.feet a{
+  text-decoration: none;
+  color: white;
+}
+
+.textBox22{
+  width:40%;
+  vertical-align:center;
+  text-align:center;
+  align-items:center;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+
+}
+
+.wrapperr{
+  display:flex;
+}
+
+#icon{
+  font-size:35px;
+  color: #E046B0;
+  padding-bottom: 25px;
+}
+
+
+.text
+/* form css*/
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+}
+.center h1{
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid silver;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+}
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+}
+.txt_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: .5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  top: -5px;
+  color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
   width: 100%;
 }
+.pass{
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
+  cursor: pointer;
+}
+.pass:hover{
+  text-decoration: underline;
+}
+input[type="submit"]{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+input[type="submit"]:hover{
+  border-color: #2691d9;
+  transition: .5s;
+}
+.signup_link{
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #ffff;
+}
+.signup_link a{
+  color: #2691d9;
+  text-decoration: none;
+}
+.signup_link a:hover{
+  text-decoration: underline;
+}
+
+input#sname {
+    color: white;
+}
+
+textarea{
+  background-color: #C4C7EC;
+}
+
+/*lyrics!!!!*/

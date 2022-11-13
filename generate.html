@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Generate - Koombia</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+  <script src="./bundle.js"></script>
+</head>
+<!--frontend nerdiness ofcofc-->
+
+
+<!--http://tts.cyzon.us/ <- look at this site for the stuff, idk it has an api-->
+
+<body>
+  <section>
+    <header>
+      <a href="index.html"><img src="/images/logo.png" class="logo"></a>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="generate.html">GENERATE</a></li>
+      </ul>
+    </header>
+  </section>
+
+  <div class="content">
+    <div class="textBox">
+      <h2 style="color:#4674F6;" type="text" align="center">Create your song!</h2>
+      <p>Start by copy and pasting some text into the box, choose a genre and generate!</p>
+      <br>
+
+      <div class="center">
+        <h1>Fill out</h1>
+        <form method="post">
+
+          <div class="txt_field">
+            <input type="text" id="sname" name="sname" required>
+            <span></span>
+            <label for="sname">Song name:</label><br>
+          </div>
+
+          <div>
+            <span></span>
+            <label for="stext">Text:</label><br>
+            <textarea iname="message" rows="10" cols="70" maxlength="200"
+              id="text">The Mitochondria is the powerhouse of the cell.</textarea>
+          </div>
+
+          <br>
+
+          <label>Genre:</label>
+          <div id="radios">
+            <input type="radio" id="pop" name="genre" value="pop">
+            <label for="pop">POP</label><br>
+            <input type="radio" id="kids" name="genre" value="kids">
+            <label for="kids">KIDS</label><br>
+            <input type="radio" id="hiphop" name="genre" value="hiphop">
+            <label for="hiphop">HIP-HOP</label><br>
+          </div>
+        </form>
+
+        <section class="btnsjuju">
+          <div>
+            <button class="generatebtn" type="submit"
+              id=donottouchthisidplsithasstuffwithbackendthatsreallyimportanttothesafetyandreleaseofthewebsitethanks>Generate
+            </button>
+          </div>
+          <div>
+            <button class="generatebtn" type="submit" id=stop>Stop</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="textBox2">
+      <h2 style="color: #4674F6;">Lyrics</h2>
+      <h3 id="song-title"></h3>
+      <div class="lyrics-box" id="lyrics-box">
+        <div class="stanza" id="stanza">Stanza1</div>
+        <div class="stanza" id="stanza">Stanza2</div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <footer class="feet">
+    <!-- <p>Crafted with ❤️ <span class="underline"><a href="https://do-re-mi-hacks-3.devpost.com/">Do-Re-Mi Hacks 3</a></span></p>-->
+
+  </footer>
+
+</body>
+
+
+
+<script>
+  //TODO ALSO SYNTH DIFFERENT INSTRUMENTS
+  const piano = new tone.Sampler({
+    urls: {
+      "C4": "C4.mp3",
+      "D#4": "Ds4.mp3",
+      "F#4": "Fs4.mp3",
+      "A4": "A4.mp3",
+    },
+    release: 1,
+    baseUrl: "https://tonejs.github.io/audio/salamander/",
+  }).toDestination();
+  function pop() {
+    const loopA = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttackRelease(["C3", "G3", "E3"], time);
+      })
+    }, 2).start(0);
+    const loopB = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttackRelease(["G3", "B3", "D4"], time);
+      })
+    }, 4).start(1);
+    const loopC = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttackRelease(["A3", "C4", "E4"], time);
+      })
+    }, 6).start(2);
+    const loopD = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttackRelease(["F3", "A3", "C4"], time);
+      })
+    }, 8).start(3);
+    tone.start()
+    tone.Transport.start()
+  }
+
+  ///KIDS
+  function kids() {
+    const loopA = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttack("D3", time);
+        piano.triggerAttack("F3", time + 0.5);
+        piano.triggerAttack("A3", time + 1);
+        piano.triggerAttack("C4", time + 1.5);
+        piano.triggerAttackRelease(["D3", "F3", "A3", "C4"], time + 3);
+      })
+    }, 4).start(0);
+    const loopB = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttack("G3", time);
+        piano.triggerAttack("B3", time + 0.5);
+        piano.triggerAttack("D4", time + 1);
+        piano.triggerAttack("F4", time + 1.5);
+        piano.triggerRelease(["G3", "B3", "D4", "F4"], time + 3);
+      })
+    }, 4).start(4);
+    const loopC = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttack("C3", time);
+        piano.triggerAttack("E3", time + 0.5);
+        piano.triggerAttack("G3", time + 1);
+        piano.triggerAttack("B3", time + 1.5);
+        piano.triggerRelease(["C3", "E3", "G3", "B3"], time + 3);
+      })
+    }, 4).start(2);
+    const loopD = new tone.Loop(time => {
+      tone.loaded().then(() => {
+        piano.triggerAttack("F3", time);
+        piano.triggerAttack("E3", time + 0.5);
+        piano.triggerAttack("G3", time + 1);
+        piano.triggerAttack("A3", time + 1.5);
+        piano.triggerRelease(["C3", "E3", "G3", "A3"], time + 3);
+      })
+    }, 4).start(4);
+
+
+
+    tone.start()
+    tone.Transport.start()
+  }
+  ////MUSIC
+  function music(string) {
+    string = string.split(" ")
+    try {
+      document.querySelector('input[name="genre"]:checked').value
+    } catch {alert("Select a Genre!"); return "";}
+
+    switch (document.querySelector('input[name="genre"]:checked').value) {
+      case "pop":
+        f = 0
+        for (i = 0; i < string.length; i++) {
+          if (f > 2) string[i] += "."
+          f += f == 5 ? -5 : 1
+        }
+        pop()
+        break;
+      case "kids":
+        for (i = 0; i < string.length; i++) {
+          string[i] += "."
+        }
+        kids()
+        break;
+      case "hiphop":
+        break;
+    }
+    return string.join('')
+  }
+  window.onload = function () {
+    const btn = document.getElementById("donottouchthisidplsithasstuffwithbackendthatsreallyimportanttothesafetyandreleaseofthewebsitethanks");
+    const stopbtn = document.getElementById("stop");
+    stopbtn.addEventListener("click", () => tone.Transport.stop())
+    btn.addEventListener("click", async () => await tts())
+    async function tts() {
+      const speech = new ss.default()
+      if (!speech.hasBrowserSupport()) {
+        alert("Please upgrade your browser to use this feature!")
+      }
+
+      const data = await speech.init({
+        'splitSentences': false,
+        'listeners': {
+          'onvoiceschanged': (voices) => {
+            console.log("Event voiceschanged", voices)
+          }
+        }
+      })
+      speech.setPitch(0.5)
+      speech.setRate(0.5)
+      console.log(data)
+      const st = await speech.speak({
+        text: `${music(document.getElementById('text').value)}`,
+      })
+    }
+  }</script>
+
+</html>

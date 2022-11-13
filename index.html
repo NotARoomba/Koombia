@@ -4,20 +4,94 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <title>Koombia</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <script src="./index.js"></script>
+  <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+  <script src="./bundle.js"></script>
+  <script src="talkify.min.js"></script>
 </head>
+<!--frontend nerdiness ofcofc-->
+
+
+<!--http://tts.cyzon.us/ <- look at this site for the stuff, idk it has an api-->
 
 <body>
-  Koombia
-  <button id="tts">text to speech test</button>
-  <!--
-  This script places a badge on your repl's full-browser view back to your repl's cover
-  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
-  teal, blue, blurple, magenta, pink!
-  -->
-  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
+  <section>
+    <header>
+      <a href="#"><img src="/images/logo.png" class="logo"></a>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="generate.html">GENERATE</a></li>
+      </ul>
+    </header>
+  </section>
+
+  <div class="content">
+    <div class="textBox">
+      <h2>Your text into music<br>with <span>Koombia</span></h2>
+      <p>A platform that will help you create music in a fun and easy way.</p>
+
+      <a href="generate.html" class="btn2">
+        <p id="generate">Generate</p>
+      </a>
+
+    </div>
+
+    <div class="imgBox">
+      <img class="musicmanimg" src="/images/musicman.png">
+    </div>
+  </div>
+  </div>
+
+
+  <div id="section2">
+    <h2>How does it work?</h2 <p>Copy, paste, choose and generate! Make your songs in 4 simple steps.</p>
+    <div class="steps-table">
+      <div class="step">
+        <i id="icon" class="lni lni-select"></i>
+        <h3 class="underline">Copy</h3>
+        <p>Copy a text from your biology lesson or something you want to learn fast</p>
+      </div>
+      <div class="step">
+        <i id="icon" class="lni lni-brush"></i>
+        <h3 class="underline">Paste</h3>
+        <p>Paste it inside the box in our generator page</p>
+      </div>
+      <div class="step">
+        <i id="icon" class="lni lni-headphone"></i>
+        <h3 class="underline">Choose</h3>
+        <p>Choose a genre for your song</p>
+      </div>
+      <div class="step">
+        <i id="icon" class="lni lni-microphone"></i>
+        <h3 class="underline">Generate</h3>
+        <p>Click generate and turn your lesson into a easy to learn rap</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapperr">
+    <div class="content">
+      <div class="imgBox">
+        <img class="genresimg" src="/images/genres.png">
+      </div>
+
+
+    </div>
+    <div class="textBox22">
+      <h2>Choose your favorite <span style="color:#4674F6;">genre</span></h2>
+      <p>Need inspiration? Want to experiment across different genres? Simply select from our list of genres to generate
+        new tracks</p>
+    </div>
+
+  </div>
+
+  <footer class="feet">
+    <p>Crafted with ❤️ <span class="underline"><a href="https://do-re-mi-hacks-3.devpost.com/">Do-Re-Mi Hacks
+          3</a></span></p>
+
+  </footer>
+
 </body>
 
 </html>
