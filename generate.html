@@ -76,7 +76,7 @@
 
       </div>
     </div>
-    <!-- 
+
     <div class="textBox2">
       <h2 style="color: #4674F6;">Karaoke</h2><i class="lni lni-microphone" style="font-size:50px;"></i>
       <h3 id="song-title"></h3>
@@ -93,7 +93,7 @@
         <div id="label-container"></div>
 
       </div>
-    </div> -->
+    </div>
 
 
   </div>
@@ -313,6 +313,92 @@
         text: `${music(document.getElementById('text').value, speech)}`,
       })
     }
+    ///TTSS----------------------------------------------
+    const button = document.getElementById("button");
+    const result = document.getElementById("result");
+    const main = document.getElementsByTagName("main")[0];
+    let listening = false;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (typeof SpeechRecognition !== "undefined") {
+      const recognition = new SpeechRecognition();
+
+      const stop = () => {
+        main.classList.remove("speaking");
+        recognition.stop();
+        button.textContent = "Start listening";
+      };
+
+      const start = () => {
+        main.classList.add("speaking");
+        recognition.start();
+        button.textContent = "Stop listening";
+      };
+
+      const onResult = event => {
+        result.innerHTML = "";
+        for (const res of event.results) {
+          const text = document.createTextNode(res[0].transcript);
+          const p = document.createElement("p");
+          p.id = 'speechResult'
+          if (res.isFinal) {
+            p.classList.add("final");
+          }
+          p.appendChild(text);
+          result.appendChild(p);
+
+        }
+      };
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.addEventListener("result", onResult);
+      button.addEventListener("click", event => {
+        listening ? stop() : start();
+        listening = !listening;
+      });
+    } else {
+      button.remove();
+      const message = document.getElementById("message");
+      message.removeAttribute("hidden");
+      message.setAttribute("aria-hidden", "false");
+    }
+
+    var clicked = 0
+
+    function questiondisplayer() {
+      var msg = "Thank you for talking with us"
+      var weights = ""
+      if (clicked == 0) {
+        msg = "Press start to start singing"
+        document.getElementById("checker").innerHTML = "Next";
+      }
+
+
+
+      if (clicked == 1) {
+        weights = document.getElementById("speechResult").innerHTML
+        msg = "Your score is: "
+        var isTeen = false
+        if (age <= 21) {
+          isTeen = true
+        }
+
+
+      }
+
+      document.getElementById("question").innerHTML = (msg);
+      var msg = new SpeechSynthesisUtterance(msg);
+      window.speechSynthesis.speak(msg);
+      clicked = clicked + 1;
+    }
+
+    function test() {
+      msg = "test"
+      document.getElementById("question").innerHTML = msg;
+
+    }
+
+    document.getElementById("checker").addEventListener("click", questiondisplayer);
   }</script>
 
 </html>
