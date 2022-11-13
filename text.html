@@ -1,0 +1,133 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title> Koombia </title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,700&display=swap"
+    rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <p id="question"></p>
+  <div class="flex-container">
+    <div id="result"></div>
+    <div class="logocontainer">
+      <img class="trainer" src="trainer.png">
+    </div>
+  </div>
+  <main>
+    <div class="buttons">
+      <button id="button" class="startbutton">Start listening</button>
+      <p id="message" hidden aria-hidden="true">
+        Your browser doesn't support Speech Recognition. Sorry.
+      </p>
+      <button id="checker" class="startbutton" onclick="questiondisplayer">Start</button>
+    </div>
+  </main>
+  <div id="label-container"></div>
+
+</body>
+<script>
+
+  //i love this starter codeeee
+  window.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("button");
+    const result = document.getElementById("result");
+    const main = document.getElementsByTagName("main")[0];
+    let listening = false;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (typeof SpeechRecognition !== "undefined") {
+      const recognition = new SpeechRecognition();
+
+      const stop = () => {
+        main.classList.remove("speaking");
+        recognition.stop();
+        button.textContent = "Start listening";
+      };
+
+      const start = () => {
+        main.classList.add("speaking");
+        recognition.start();
+        button.textContent = "Stop listening";
+      };
+
+      const onResult = event => {
+        result.innerHTML = "";
+        for (const res of event.results) {
+          const text = document.createTextNode(res[0].transcript);
+          const p = document.createElement("p");
+          p.id = 'speechResult'
+          if (res.isFinal) {
+            p.classList.add("final");
+          }
+          p.appendChild(text);
+          result.appendChild(p);
+
+        }
+      };
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.addEventListener("result", onResult);
+      button.addEventListener("click", event => {
+        listening ? stop() : start();
+        listening = !listening;
+      });
+    } else {
+      button.remove();
+      const message = document.getElementById("message");
+      message.removeAttribute("hidden");
+      message.setAttribute("aria-hidden", "false");
+    }
+  });
+
+  var clicked = 0
+
+  function questiondisplayer() {
+    var msg = "Thank you for talking with us"
+    var weights = ""
+    if (clicked == 0) {
+      msg = "Press start to start singing"
+      document.getElementById("checker").innerHTML = "Next";
+    }
+
+
+
+    if (clicked == 1) {
+      weights = document.getElementById("speechResult").innerHTML
+      msg = "Your score is: "
+      var isTeen = false
+      if (age <= 21) {
+        isTeen = true
+      }
+
+
+    }
+
+    document.getElementById("question").innerHTML = (msg);
+    var msg = new SpeechSynthesisUtterance(msg);
+    window.speechSynthesis.speak(msg);
+    clicked = clicked + 1;
+  }
+
+  function test() {
+    msg = "test"
+    document.getElementById("question").innerHTML = msg;
+
+  }
+
+  document.getElementById("checker").addEventListener("click", questiondisplayer);
+
+
+
+
+
+</script>
+
+</html>

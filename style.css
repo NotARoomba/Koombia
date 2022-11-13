@@ -478,3 +478,27 @@ textarea{
 }
 
 /*lyrics!!!!*/
+.startbutton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  font-family: "Karla";
+  color: #E7D5FD;
+  border: none;
+  background-color: #4674F6;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.startbutton:hover{
+  background-color: #E7D5FD;
+  border-color:#4674F6;
+  color: #0E1E45;
+  border:solid;
+  transition:0.3s;
+}
+.buttons{
+  display:flex;
+}
