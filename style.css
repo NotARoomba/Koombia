@@ -502,3 +502,27 @@ textarea{
 .buttons{
   display:flex;
 }
+
+#immadie{
+  display:flex;
+  flex-direction:column;
+}
+
+main{
+  width: 30%;
+}
+
+#speechResult{
+  width:200px;
+  display: flex;
+  margin:20px;
+  text-align:center;
+}
+
+#score{
+  width:100px;
+  display:flex;
+  margin:10px;
+  text-align: center;
+}
+

@@ -78,18 +78,30 @@
     </div>
 
     <div class="textBox2">
-      <h2 style="color: #4674F6;">Karaoke</h2><i class="lni lni-microphone" style="font-size:50px;"></i>
+      <div id="immadie">
+        <i class="lni lni-microphone" style="font-size:50px;"></i>
+        <h2 style="color: #4674F6;">Karaoke</h2>
+      </div>
       <h3 id="song-title"></h3>
+      <div id="result"></div>
       <div class="lyrics-box" id="lyrics-box">
         <main>
+
+
           <div class="buttons">
             <button id="button" class="startbutton">Start</button>
             <p id="message" hidden aria-hidden="true">
               Your browser doesn't support Speech Recognition. Sorry.
             </p>
-            <button id="checker" class="startbutton" onclick="questiondisplayer">Finish</button>
+            <button id="checker" class="startbutton">Finish</button>
           </div>
+
         </main>
+        <div id="score-div">
+          <p></p>
+          <p id="score"></p>
+        </div>
+
         <div id="label-container"></div>
 
       </div>
@@ -183,7 +195,46 @@
         piano.triggerAttack("F3", time);
         piano.triggerAttack("E3", time + 0.5);
         piano.triggerAttack("G3", time + 1);
-        piano.triggerAttack("A3", time + 1.5);
+        piano.triggerAttack("A3", time + 1.5); function similarity(s1, s2) {
+          var longer = s1;
+          var shorter = s2;
+          if (s1.length < s2.length) {
+            longer = s2;
+            shorter = s1;
+          }
+          var longerLength = longer.length;
+          if (longerLength == 0) {
+            return 1.0;
+          }
+          return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+        }
+
+        function editDistance(s1, s2) {
+          s1 = s1.toLowerCase();
+          s2 = s2.toLowerCase();
+
+          var costs = new Array();
+          for (var i = 0; i <= s1.length; i++) {
+            var lastValue = i;
+            for (var j = 0; j <= s2.length; j++) {
+              if (i == 0)
+                costs[j] = j;
+              else {
+                if (j > 0) {
+                  var newValue = costs[j - 1];
+                  if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                    newValue = Math.min(Math.min(newValue, lastValue),
+                      costs[j]) + 1;
+                  costs[j - 1] = lastValue;
+                  lastValue = newValue;
+                }
+              }
+            }
+            if (i > 0)
+              costs[s2.length] = lastValue;
+          }
+          return costs[s2.length];
+        }
         piano.triggerRelease(["C3", "E3", "G3", "A3"], time + 3);
       })
     }, 4).start(4);
@@ -363,42 +414,50 @@
       message.setAttribute("aria-hidden", "false");
     }
 
-    var clicked = 0
-
-    function questiondisplayer() {
-      var msg = "Thank you for talking with us"
-      var weights = ""
-      if (clicked == 0) {
-        msg = "Press start to start singing"
-        document.getElementById("checker").innerHTML = "Next";
+    function res() {
+      document.getElementById('score').innerText = `Your Score Is: ${Math.round(similarity(document.getElementById('text').value, document.getElementById('speechResult').innerHTML) * 100)}%`
+    }
+    function similarity(s1, s2) {
+      var longer = s1;
+      var shorter = s2;
+      if (s1.length < s2.length) {
+        longer = s2;
+        shorter = s1;
       }
+      var longerLength = longer.length;
+      if (longerLength == 0) {
+        return 1.0;
+      }
+      return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+    }
 
+    function editDistance(s1, s2) {
+      s1 = s1.toLowerCase();
+      s2 = s2.toLowerCase();
 
-
-      if (clicked == 1) {
-        weights = document.getElementById("speechResult").innerHTML
-        msg = "Your score is: "
-        var isTeen = false
-        if (age <= 21) {
-          isTeen = true
+      var costs = new Array();
+      for (var i = 0; i <= s1.length; i++) {
+        var lastValue = i;
+        for (var j = 0; j <= s2.length; j++) {
+          if (i == 0)
+            costs[j] = j;
+          else {
+            if (j > 0) {
+              var newValue = costs[j - 1];
+              if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                newValue = Math.min(Math.min(newValue, lastValue),
+                  costs[j]) + 1;
+              costs[j - 1] = lastValue;
+              lastValue = newValue;
+            }
+          }
         }
-
-
+        if (i > 0)
+          costs[s2.length] = lastValue;
       }
-
-      document.getElementById("question").innerHTML = (msg);
-      var msg = new SpeechSynthesisUtterance(msg);
-      window.speechSynthesis.speak(msg);
-      clicked = clicked + 1;
+      return costs[s2.length];
     }
-
-    function test() {
-      msg = "test"
-      document.getElementById("question").innerHTML = msg;
-
-    }
-
-    document.getElementById("checker").addEventListener("click", questiondisplayer);
+    document.getElementById("checker").addEventListener("click", res);
   }</script>
 
 </html>
